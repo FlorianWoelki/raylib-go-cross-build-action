@@ -15,8 +15,8 @@ fi
 root_path="/go/src/github.com/$GITHUB_REPOSITORY"
 release_path="$GITHUB_WORKSPACE/.release"
 repo_name="$(echo $GITHUB_REPOSITORY | cut -d '/' -f2)"
-targets=("windows/amd64" "windows/386")
-ccs=("x86_64-w64-mingw32-gcc" "i686-w64-mingw32-gcc")
+targets=("windows/amd64" "windows/386" "darwin/amd64")
+ccs=("x86_64-w64-mingw32-gcc" "i686-w64-mingw32-gcc" "/home/runner/work/osxcross/target/bin/o64-clang")
 
 echo "----> Setting up Go repository"
 mkdir -p $release_path
