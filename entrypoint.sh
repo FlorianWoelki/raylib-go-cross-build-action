@@ -30,13 +30,14 @@ for ((i = 0; i < ${#targets[@]}; ++i)); do
   arch="$(echo $target | cut -d '/' -f2)"
   cc=${ccs[$i]}
   output="${release_path}/${repo_name}_${os}_${arch}"
+  zipOutput="$output"
   if [ "$os" == "windows" ]; then
     output="$output.exe"
   fi
 
   echo "----> Building project for: $os/$arch ($output, $cc)"
   GOOS=$os GOARCH=$arch CC=$cc CGO_ENABLED=1 go build -o $output
-  zip -j $output.zip $output > /dev/null
+  zip -j $zipOutput.zip $output > /dev/null
 done
 
 echo "----> Build is complete. List of files at $release_path:"
