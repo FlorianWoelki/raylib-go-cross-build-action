@@ -30,6 +30,9 @@ for ((i = 0; i < ${#targets[@]}; ++i)); do
   arch="$(echo $target | cut -d '/' -f2)"
   cc=${ccs[$i]}
   output="${release_path}/${repo_name}_${os}_${arch}"
+  if [ "$os" == "windows" ]; then
+    output="$output.exe"
+  done
 
   echo "----> Building project for: $os/$arch ($output, $cc)"
   GOOS=$os GOARCH=$arch CC=$cc CGO_ENABLED=1 go build -o $output
